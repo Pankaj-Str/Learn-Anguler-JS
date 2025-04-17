@@ -1,4 +1,4 @@
-### a card component in Angular using Angular CLI, fetching data from an array step-by-step.
+### Card component in Angular using Angular CLI, fetching data from an array step-by-step.
 
 ### Prerequisites
 - Node.js and npm installed.
