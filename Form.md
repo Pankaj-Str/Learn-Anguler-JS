@@ -103,61 +103,62 @@ export class UserFormComponent implements OnInit {
 2. Add the following code:
 
 ```html
+<h1>{{title}}</h1>
 <div class="form-container">
-  <h2>User Registration Form</h2>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <!-- Name Field -->
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input 
-        type="text" 
-        id="name" 
-        formControlName="name" 
-        class="form-control"
-        [ngClass]="{'is-invalid': submitted && f.name.errors}"
-      >
-      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-        <div *ngIf="f.name.errors.required">Name is required</div>
-        <div *ngIf="f.name.errors.minlength">Name must be at least 3 characters</div>
+    <h2>User Registration Form</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          formControlName="name" 
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && f['name'].errors}"
+        >
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+          <div *ngIf="f['name'].errors['required']">Name is required</div>
+          <div *ngIf="f['name'].errors['minlength']">Name must be at least 3 characters</div>
+        </div>
       </div>
-    </div>
-
-    <!-- Email Field -->
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input 
-        type="email" 
-        id="email" 
-        formControlName="email" 
-        class="form-control"
-        [ngClass]="{'is-invalid': submitted && f.email.errors}"
-      >
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Email is required</div>
-        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+  
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && f['email'].errors}"
+        >
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Email is required</div>
+          <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
+        </div>
       </div>
-    </div>
-
-    <!-- Password Field -->
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input 
-        type="password" 
-        id="password" 
-        formControlName="password" 
-        class="form-control"
-        [ngClass]="{'is-invalid': submitted && f.password.errors}"
-      >
-      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">Password is required</div>
-        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+  
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password" 
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && f['password'].errors}"
+        >
+        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+          <div *ngIf="f['password'].errors['required']">Password is required</div>
+          <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+        </div>
       </div>
-    </div>
-
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Register</button>
-  </form>
-</div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
 ```
 
 ### Step 6: Add Basic Styling
