@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CenterSectionComponent implements OnInit {
 
+   title = "Welcome to ICE Park";
+
   constructor() { }
 
   ngOnInit(): void {
