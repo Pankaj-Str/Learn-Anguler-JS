@@ -11,12 +11,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
+import { ProductDataComponent } from './product-data/product-data.component';
+import { HttpClientModule } from '@angular/common/http'; 
+import { ApiService } from './api.service';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CenterSectionComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductDataComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +29,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
