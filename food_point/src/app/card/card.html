@@ -1,7 +1,76 @@
-<div class="card-container">
+<div class="container">
+  <div class="row">
+    <div class="card-container">
   <div class="card" *ngFor="let card of cards">
     <img [src]="card.image" alt="{{ card.title }}" />
     <h2>{{ card.title }}</h2>
     <p>{{ card.description }}</p>
   </div>
 </div>
+  </div>
+
+</div>
+
+<hr>
+
+<mat-grid-list cols="3" rowHeight="">
+
+  <mat-grid-tile>
+    <mat-card>
+                <mat-card-header>
+                  <div mat-card-avatar></div>
+                  <mat-card-title>{{data[0].title}}</mat-card-title>
+                  <mat-card-subtitle>{{data[0].t_name}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    {{data[0].t_con}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button matButton>LIKE</button>
+                  <button matButton>SHARE</button>
+                </mat-card-actions>
+              </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+                <mat-card-header>
+                  <div mat-card-avatar></div>
+                  <mat-card-title>{{data[1].title}}</mat-card-title>
+                  <mat-card-subtitle>{{data[1].t_name}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    {{data[1].t_con}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button matButton>LIKE</button>
+                  <button matButton>SHARE</button>
+                </mat-card-actions>
+              </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+                <mat-card-header>
+                  <div mat-card-avatar></div>
+                  <mat-card-title>{{data[2].title}}</mat-card-title>
+                  <mat-card-subtitle>{{data[2].t_name}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>
+                    {{data[2].t_con}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button matButton>LIKE</button>
+                  <button matButton>SHARE</button>
+                </mat-card-actions>
+              </mat-card>
+  </mat-grid-tile>
+  
+
+</mat-grid-list>
+              
+       

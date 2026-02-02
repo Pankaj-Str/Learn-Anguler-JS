@@ -26,6 +26,7 @@
               }
             ],
             "styles": [
+              "src/material-theme.scss",
               "src/styles.css"
             ],
             "server": "src/main.server.ts",
