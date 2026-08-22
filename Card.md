@@ -25,6 +25,7 @@ This creates `src/app/card` with necessary files (`card.component.ts`, `.html`, 
 In `src/app/card/card.component.ts`, define an array to hold card data:
 ```typescript
 import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-card',
