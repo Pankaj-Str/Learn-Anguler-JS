@@ -498,4 +498,81 @@ Your browser will show something like:
               HTML Page
 ```
 
-**In simple words:** `fetch()` API se data lata hai → `this.users` mein rakhta hai → `*ngFor` us data ko HTML mein repeat karke show karta hai.
+---
+
+##  app-apidata.ts
+```js
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-apidata',
+  standalone: true,
+  imports: [],
+  templateUrl: './apidata.component.html',
+  styleUrl: './apidata.component.css'
+})
+export class ApidataComponent {
+
+  users: any[] = [];
+
+  async getUsers() {
+
+    const response = await fetch(
+      'https://jsonplaceholder.typicode.com/users'
+    );
+
+    this.users = await response.json();
+
+  }
+
+}
+
+```
+---
+## app-apidata.html
+```html
+
+<div class="container">
+
+  <h1>Users List</h1>
+
+  <button (click)="getUsers()">
+    Get Users
+  </button>
+
+  <div class="users">
+
+    @for (user of users; track user.id) {
+    <div class="user-card">
+
+      <h2>{{ user.name }}</h2>
+
+      <p>
+        <strong>Username:</strong>
+        {{ user.username }}
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        {{ user.email }}
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        {{ user.phone }}
+      </p>
+
+      <p>
+        <strong>Website:</strong>
+        {{ user.website }}
+      </p>
+
+    </div>
+    }
+
+  </div>
+
+</div>
+```
+
