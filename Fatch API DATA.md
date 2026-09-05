@@ -1,4 +1,4 @@
-# complete Angular CLI project
+# Complete Angular CLI project
 
 We will use the free API:
 
