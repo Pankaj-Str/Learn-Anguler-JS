@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let card of cards">
+                <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title class="text-white">{{card.title}}</mat-card-title>
+                    <mat-card-subtitle>{{card.category}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{card.image}}" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                   {{card.description}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button class="btn btn-light">{{card.amount}}</button>
+                </mat-card-actions>
+                </mat-card>
+
+        </div>
+        
+    </div>
+</div>
