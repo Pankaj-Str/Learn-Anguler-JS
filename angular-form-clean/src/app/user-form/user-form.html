@@ -1,0 +1,72 @@
+<div class="container">
+  <h2>User Form</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Name</label>
+      <input type="text" formControlName="name" placeholder="Enter name">
+      @if (userForm.get('name')?.invalid && userForm.get('name')?.touched) {
+        <div class="error">Name is required</div>
+      }
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="Enter email">
+      @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+        <div class="error">Valid email is required</div>
+      }
+    </div>
+
+    <div>
+      <label>Message</label>
+      <textarea formControlName="message" rows="4" placeholder="Enter message"></textarea>
+      @if (userForm.get('message')?.invalid && userForm.get('message')?.touched) {
+        <div class="error">Message is required</div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="loading || userForm.invalid">
+      {{ loading ? 'Saving...' : 'Submit' }}
+    </button>
+  </form>
+
+  @if (successMessage) {
+    <p class="success">{{ successMessage }}</p>
+  }
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  <hr>
+
+  <h3>Data from Database</h3>
+  <button type="button" (click)="loadUsers()">Refresh</button>
+
+  @if (users.length === 0) {
+    <p>No data found.</p>
+  }
+
+  @if (users.length > 0) {
+    <table border="1" cellpadding="8">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track user._id) {
+          <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.message }}</td>
+            <td>{{ user.createdAt | date:'medium' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
