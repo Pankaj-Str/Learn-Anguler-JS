@@ -114,11 +114,7 @@ Your browser should open at:
 
 Angular CLI creates the application workspace and runs a development server using these commands.&#x20;
 
-[image](https://www.google.com/s2/favicons?domain=https://angular.dev\&sz=32)
 
-Angular
-
-+1
 
 
 
