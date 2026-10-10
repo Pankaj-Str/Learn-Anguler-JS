@@ -588,4 +588,4 @@ Database
 
 MySQL or MongoDB
 
-Suggested next lesson: Connect this Angular CRUD application to a MySQL database using Node.js and Express, including complete backend code, API calls, and permanent storage.
+
