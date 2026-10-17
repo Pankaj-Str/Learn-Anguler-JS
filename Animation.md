@@ -1,104 +1,196 @@
-### Animations in an Angular project using Angular CLI, you can use the Angular animations module. Here's a step-by-step guide on how to add basic animations to your Angular application:
+# Angular Animation 
 
-### Step 1: Create an Angular Project
-First, make sure you have Angular CLI installed. If not, install it using the following command:
-```bash
-npm install -g @angular/cli
+## Step 1: Create an Angular Project
+
+Open your terminal and run:
+
+```
+ng new angular-animation-demo
+cd angular-animation-demo
+ng serve
 ```
 
-Then, create a new Angular project:
-```bash
-ng new angular-animation-example
-cd angular-animation-example
-```
+Open `http://localhost:4200/` in your browser.
 
-### Step 2: Install Angular Animations Module
-Angular provides built-in animation support through the `@angular/animations` package. It should already be installed by default, but if it's not, you can install it using:
-```bash
+## Step 2: Install Angular Animations
+
+For Angular versions that use the traditional animation system, install the animations package:
+
+```
 npm install @angular/animations
 ```
 
-### Step 3: Import Animation Module
-Open the `app.module.ts` file and import the `BrowserAnimationsModule` from `@angular/platform-browser/animations`. Then, add it to the `imports` array of your `@NgModule` decorator:
+## Step 3: Configure Animations
 
-```typescript
+If your project uses `app.module.ts`, import `BrowserAnimationsModule`:
+
+```
+import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserAnimationsModule],
-  providers: [],
-  bootstrap: [AppComponent],
+  imports: [
+    BrowserAnimationsModule
+  ]
 })
 export class AppModule {}
 ```
 
-### Step 4: Define Animations in the Component
-Next, you can define animations in your component. Open the `app.component.ts` file, and import the necessary animation functions:
-```typescript
-import { trigger, transition, style, animate } from '@angular/animations';
+If you are using a standalone Angular application, configure animations in `app.config.ts` instead:
+
+```
+import { ApplicationConfig } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideAnimations()
+  ]
+};
 ```
 
-Then, in your `@Component` decorator, define the animations. Here's an example of a simple fade-in animation:
+## Step 4: Create the Animation Component
 
-```typescript
+Open `app.component.ts` and add the following code:
+
+```
+
 import { Component } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrl: './app.component.css',
   animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1s', style({ opacity: 1 }))
+    trigger('boxAnimation', [
+      state('normal', style({
+        opacity: 1,
+        transform: 'translateX(0) scale(1)'
+      })),
+
+      state('active', style({
+        opacity: 1,
+        transform: 'translateX(100px) scale(1.2)'
+      })),
+
+      transition('normal <=> active', [
+        animate('600ms ease-in-out')
       ])
     ])
   ]
 })
 export class AppComponent {
-  title = 'angular-animation-example';
-}
-```
+  animationState = 'normal';
 
-### Step 5: Apply Animation to HTML
-Now, apply the animation in the HTML template. In your `app.component.html`, use the `[@fadeIn]` directive to bind the animation to an element.
-
-```html
-<div *ngIf="showElement" [@fadeIn]>
-  <h1>Welcome to Angular Animations!</h1>
-</div>
-
-<button (click)="toggleElement()">Toggle Element</button>
-```
-
-### Step 6: Add Logic to Toggle Animation
-In the `app.component.ts` file, add the logic to toggle the visibility of the element and trigger the animation when the button is clicked:
-
-```typescript
-export class AppComponent {
-  title = 'angular-animation-example';
-  showElement = true;
-
-  toggleElement() {
-    this.showElement = !this.showElement;
+  toggleAnimation() {
+    this.animationState =
+      this.animationState === 'normal'
+        ? 'active'
+        : 'normal';
   }
 }
+
 ```
 
-### Step 7: Run the Application
-Finally, run your Angular application to see the animation in action:
-```bash
+How it works:
+
+- `trigger()` defines an animation.
+- `state()` defines the appearance of each state.
+- `style()` specifies CSS styles.
+- `transition()` defines how the animation changes between states.
+- `animate()` controls the duration and timing.
+
+## Step 5: Create the HTML Template
+
+Open `app.component.html`:
+
+```
+
+<h1>Angular Animation Demo</h1>
+
+<div
+  class="box"
+  [@boxAnimation]="animationState">
+  Angular
+</div>
+
+<button (click)="toggleAnimation()">
+  Toggle Animation
+</button>
+
+```
+
+## Step 6: Add CSS Styling
+
+Open `app.component.css`:
+
+```
+
+h1 {
+  font-family: Arial, sans-serif;
+  color: #2563eb;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  margin: 40px 0;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+button {
+  padding: 12px 24px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+```
+
+## Step 7: Run the Application
+
+```
 ng serve
 ```
-Visit `http://localhost:4200/` in your browser. You should see the "Welcome to Angular Animations!" message appear with a fade-in effect when the page loads. Clicking the "Toggle Element" button will toggle the visibility of the message with an animation.
 
-### Additional Animations
-Angular provides many built-in animation features like:
-- `keyframes()`: To define animations over time.
-- `state()`: To define different states for an element.
-- `group()`: To run multiple animations in parallel.
+Click the Toggle Animation button.
 
-For more complex animations, you can chain and combine these features.
+Expected animation behavior
+
+Angular
+
+Click to preview the two animation states.
+
+NormalActive
+
+Normal: original position and size. Active: the box moves right and grows by 20%.
+
+## Step 8: Other Angular Animation Examples
+
+| Animation          | Purpose                                     |
+| ------------------ | ------------------------------------------- |
+| Fade In / Fade Out | Show or hide elements smoothly              |
+| Slide Animation    | Move elements horizontally or vertically    |
+| Zoom Animation     | Enlarge or shrink elements                  |
+| Rotation           | Rotate an element                           |
+| List Animation     | Animate items as they enter or leave a list |
+| Route Animation    | Animate transitions between pages           |
+
